@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl7qa441o7ood"]
+
+[ext_resource type="Script" path="res://beat_bounce.gd" id="1_8th7i"]
+[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://moving_beat.tscn" id="2_eq8fp"]
+
+[sub_resource type="Curve2D" id="Curve2D_apun1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -192, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="BeatBounce" type="Node2D"]
+script = ExtResource("1_8th7i")
+_moving_beat_scene = ExtResource("2_eq8fp")
+
+[node name="Origin" type="Marker2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_apun1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -1.5708

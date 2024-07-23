@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsx8u00iyt0gk"]
+
+[ext_resource type="Script" path="res://beat_bouncing_measure_spawner.gd" id="1_2ex0n"]
+
+[sub_resource type="Curve2D" id="Curve2D_fmgyj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -94.8307, -2.16756, 94.8307, 2.16756, 152, -184, 0, 0, 0, 0, 296, 0)
+}
+point_count = 3
+
+[node name="BeatBouncingMeasureSpawner" type="Node2D"]
+script = ExtResource("1_2ex0n")
+
+[node name="BeatMarkers" type="Node2D" parent="."]
+
+[node name="Beat1Marker" type="Marker2D" parent="BeatMarkers"]
+
+[node name="Beat1" type="Polygon2D" parent="BeatMarkers/Beat1Marker"]
+position = Vector2(-31, -30)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beat2Marker" type="Marker2D" parent="BeatMarkers"]
+position = Vector2(300, 0)
+
+[node name="Beat2" type="Polygon2D" parent="BeatMarkers/Beat2Marker"]
+position = Vector2(-30, -29)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beat3Marker" type="Marker2D" parent="BeatMarkers"]
+position = Vector2(600, 0)
+
+[node name="Beat3" type="Polygon2D" parent="BeatMarkers/Beat3Marker"]
+position = Vector2(-30, -30)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beat4Marker" type="Marker2D" parent="BeatMarkers"]
+position = Vector2(900, 0)
+
+[node name="Beat4" type="Polygon2D" parent="BeatMarkers/Beat4Marker"]
+position = Vector2(-30, -30)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beats" type="Node2D" parent="."]
+
+[node name="BeatPaths" type="Node2D" parent="."]
+
+[node name="Beat1Path" type="Path2D" parent="BeatPaths"]
+curve = SubResource("Curve2D_fmgyj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BeatPaths/Beat1Path"]
+rotation = -0.88035
+
+[node name="Beat2Path" type="Path2D" parent="BeatPaths"]
+position = Vector2(300, 0)
+curve = SubResource("Curve2D_fmgyj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BeatPaths/Beat2Path"]
+rotation = -0.88035
+
+[node name="Beat3Path" type="Path2D" parent="BeatPaths"]
+position = Vector2(600, 0)
+curve = SubResource("Curve2D_fmgyj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BeatPaths/Beat3Path"]
+rotation = -0.88035

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dmk3puw7jd7gk"]
+
+[node name="BeatLine" type="Node2D"]
+
+[node name="MovingLine" type="Line2D" parent="."]
+position = Vector2(3, 13)
+scale = Vector2(1, 2.27703)
+points = PackedVector2Array(0, 0, 2.08165e-12, 274.481)
+
+[node name="BeatLine" type="Line2D" parent="."]
+position = Vector2(572, 10)
+scale = Vector2(1, 2.27703)
+points = PackedVector2Array(0, 0, 0, 275.359)
+default_color = Color(0, 1, 1, 1)

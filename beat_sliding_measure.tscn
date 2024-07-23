@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://qpkuy8v3dype"]
+
+[ext_resource type="Script" path="res://beat_sliding_measure.gd" id="1_vfkq6"]
+[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://moving_beat.tscn" id="2_1lnih"]
+
+[node name="BeatSlidingMeasure" type="Node2D"]
+script = ExtResource("1_vfkq6")
+_moving_beat_scene = ExtResource("2_1lnih")
+
+[node name="BeatMarkers" type="Node2D" parent="."]
+
+[node name="Beat1Marker" type="Marker2D" parent="BeatMarkers"]
+
+[node name="Beat1" type="Polygon2D" parent="BeatMarkers/Beat1Marker"]
+position = Vector2(-31, -30)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beat2Marker" type="Marker2D" parent="BeatMarkers"]
+position = Vector2(300, 0)
+
+[node name="Beat2" type="Polygon2D" parent="BeatMarkers/Beat2Marker"]
+position = Vector2(-30, -29)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beat3Marker" type="Marker2D" parent="BeatMarkers"]
+position = Vector2(600, 0)
+
+[node name="Beat3" type="Polygon2D" parent="BeatMarkers/Beat3Marker"]
+position = Vector2(-30, -30)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beat4Marker" type="Marker2D" parent="BeatMarkers"]
+position = Vector2(900, 0)
+
+[node name="Beat4" type="Polygon2D" parent="BeatMarkers/Beat4Marker"]
+position = Vector2(-30, -30)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)
+
+[node name="Beats" type="Node2D" parent="."]

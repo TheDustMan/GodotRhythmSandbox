@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://v0uxser2swnn"]
+
+[ext_resource type="Script" path="res://moving_beat.gd" id="1_w4psu"]
+
+[node name="BeatGhost" type="Node2D"]
+script = ExtResource("1_w4psu")
+
+[node name="Beat" type="Polygon2D" parent="."]
+position = Vector2(-30, -30)
+color = Color(0.539, 0.539, 0.539, 1)
+polygon = PackedVector2Array(0, 0, 60, 2.08165e-12, 60, 60, 2.08165e-12, 60)

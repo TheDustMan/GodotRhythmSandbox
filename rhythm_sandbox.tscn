@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=3 uid="uid://qfdnp4pliele"]
+
+[ext_resource type="Script" path="res://rhythm_sandbox.gd" id="1_ngdtg"]
+[ext_resource type="Script" path="res://Synchronizer.gd" id="2_j61w5"]
+[ext_resource type="FontFile" uid="uid://dh3iuml41q2uq" path="res://lcd.ttf" id="3_gqr5j"]
+[ext_resource type="AudioStream" uid="uid://dumjxbamq37fe" path="res://the_comeback2.ogg" id="4_h6xin"]
+[ext_resource type="Texture2D" uid="uid://cdpaolglwepko" path="res://play_system_button.png" id="5_3ktcc"]
+[ext_resource type="Texture2D" uid="uid://b1m28vixtwkx0" path="res://play_system_button_hl.png" id="6_e7apq"]
+[ext_resource type="Texture2D" uid="uid://bvcb3q4c3414p" path="res://play_sound_button.png" id="7_nvas8"]
+[ext_resource type="Texture2D" uid="uid://y41g3g5d88f3" path="res://play_sound_button_hl.png" id="8_xsiw1"]
+[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://beat_sliding_measure.tscn" id="9_rt3xl"]
+[ext_resource type="PackedScene" uid="uid://c6pogebwv8lil" path="res://beat_measure.tscn" id="10_bkuyi"]
+[ext_resource type="PackedScene" uid="uid://bdjkk7nnress5" path="res://beat_bouncing_measure.tscn" id="11_16oah"]
+[ext_resource type="PackedScene" uid="uid://bsx8u00iyt0gk" path="res://beat_bouncing_measure_spawner.tscn" id="12_knwh5"]
+[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://moving_beat.tscn" id="13_3vu5s"]
+
+[node name="RhythmSandbox" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_ngdtg")
+
+[node name="Synchronizer" type="Node2D" parent="."]
+script = ExtResource("2_j61w5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.0
+offset_top = 55.0
+offset_right = 404.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.654902, 1, 0.67451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("3_gqr5j")
+theme_override_font_sizes/font_size = 48
+text = "Press one of the buttons."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h6xin")
+volume_db = -6.0
+
+[node name="PlaySystem" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -136.0
+offset_right = -160.0
+offset_bottom = -7.99997
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_3ktcc")
+texture_pressed = ExtResource("5_3ktcc")
+texture_hover = ExtResource("6_e7apq")
+
+[node name="PlaySound" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = -136.0
+offset_right = 288.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_nvas8")
+texture_pressed = ExtResource("7_nvas8")
+texture_hover = ExtResource("8_xsiw1")
+
+[node name="BeatSlidingMeasure" parent="." instance=ExtResource("9_rt3xl")]
+position = Vector2(132, 569)
+
+[node name="BeatMeasure" parent="." instance=ExtResource("10_bkuyi")]
+position = Vector2(132, 60)
+
+[node name="BeatBouncingMeasure" parent="." instance=ExtResource("11_16oah")]
+position = Vector2(133, 497)
+
+[node name="BeatBouncingMeasureSpawner" parent="." instance=ExtResource("12_knwh5")]
+position = Vector2(133, 189)
+_moving_beat_scene = ExtResource("13_3vu5s")
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 248.0
+offset_right = 622.0
+offset_bottom = 279.0
+text = "Start Game"
+
+[connection signal="pressed" from="PlaySystem" to="." method="_on_PlaySystem_pressed"]
+[connection signal="pressed" from="PlaySound" to="." method="_on_PlaySound_pressed"]
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]

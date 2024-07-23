@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbj8pyn25yf66"]
+
+[ext_resource type="Script" path="res://BounceGame.gd" id="1_wke0h"]
+[ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://synchronizer.tscn" id="2_spbxy"]
+[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://beat_sliding_measure.tscn" id="3_mqb58"]
+[ext_resource type="PackedScene" uid="uid://bl7qa441o7ood" path="res://beat_bounce.tscn" id="4_2n757"]
+[ext_resource type="PackedScene" uid="uid://cbgj0mgaffebi" path="res://beat_circle.tscn" id="5_unpbx"]
+
+[node name="BounceGame" type="Node2D"]
+script = ExtResource("1_wke0h")
+
+[node name="StartText" type="Label" parent="."]
+offset_left = 456.0
+offset_top = 305.0
+offset_right = 614.0
+offset_bottom = 328.0
+text = "Press Space to Start!"
+
+[node name="QuitText" type="Label" parent="."]
+offset_left = -1.0
+offset_right = 120.0
+offset_bottom = 23.0
+text = "Press Q to Quit!"
+
+[node name="Synchronizer" parent="." instance=ExtResource("2_spbxy")]
+
+[node name="BeatSlidingMeasure" parent="." instance=ExtResource("3_mqb58")]
+position = Vector2(100, 166)
+
+[node name="BeatBounce" parent="." instance=ExtResource("4_2n757")]
+position = Vector2(270, 488)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(6, -3)
+polygon = PackedVector2Array(174, 520, 354, 520, 354, 533, 174, 533)
+
+[node name="BeatCircle" parent="." instance=ExtResource("5_unpbx")]
+position = Vector2(716, 431)
+scale = Vector2(0.36073, 0.358632)
+
+[connection signal="primary_action" from="." to="." method="_on_primary_action"]
+[connection signal="quit_pressed" from="." to="." method="_on_quit_pressed"]
+[connection signal="start_pressed" from="." to="." method="_on_start_pressed"]
