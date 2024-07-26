@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crf5v1jps1lab"]
 
-[ext_resource type="Script" path="res://moving_beat.gd" id="1_1smbh"]
+[ext_resource type="Script" path="res://scenes/moving_beat.gd" id="1_1smbh"]
 
 [node name="MovingBeat" type="Node2D"]
 script = ExtResource("1_1smbh")

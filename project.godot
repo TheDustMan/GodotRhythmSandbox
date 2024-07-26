@@ -10,16 +10,16 @@ config_version=5
 
 [application]
 
-config/name="BPM Sync Demo"
-config/description="A demo of how to sync the audio playback with the time for a consistent BPM."
+config/name="Rhythm Sandbox"
+config/description="A sandbox for experimenting with rhythm game elements"
 config/tags=PackedStringArray("audio", "demo", "official")
-run/main_scene="res://rhythm_sandbox.tscn"
+run/main_scene="res://scenes/rhythm_sandbox.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.webp"
 
 [autoload]
 
-Events="*res://Events.gd"
+Events="*res://scripts/Events.gd"
 
 [debug]
 

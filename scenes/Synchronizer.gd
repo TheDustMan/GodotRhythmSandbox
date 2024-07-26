@@ -26,7 +26,7 @@ var last_beat_time: float = 0
 func start() -> void:
 	_reset()
 	var msg := {
-		"stream" : "res://the_comeback2.ogg",
+		"stream" : "res://assets/sounds/the_comeback2.ogg",
 		"bpm" : 116
 	}
 	_load_track(msg)

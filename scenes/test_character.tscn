@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfvr3gip13q74"]
+
+[ext_resource type="Texture2D" uid="uid://cm3wej1vuu5g" path="res://assets/sprites/Sword_attack_full.png" id="1_h1xox"]
+[ext_resource type="Script" path="res://RhythmAnimationComponent.gd" id="2_jbsk7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pke63"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4fjn"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbxgp"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jcau"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bue40"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxw8y"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdyho"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iife5"]
+atlas = ExtResource("1_h1xox")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ygaxr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pke63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4fjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbxgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jcau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bue40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxw8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdyho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iife5")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[node name="TestCharacter" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ygaxr")
+animation = &"attack"
+
+[node name="RhythmAnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("2_jbsk7")
+animated_sprite = NodePath("../AnimatedSprite2D")
+animation_name = "attack"
+beat_frame = 3

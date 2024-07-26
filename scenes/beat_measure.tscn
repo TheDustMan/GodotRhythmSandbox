@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://qpkuy8v3dype"]
+[gd_scene load_steps=3 format=3 uid="uid://c6pogebwv8lil"]
 
-[ext_resource type="Script" path="res://beat_sliding_measure.gd" id="1_vfkq6"]
-[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://moving_beat.tscn" id="2_1lnih"]
+[ext_resource type="Script" path="res://scenes/beat_measure.gd" id="1_rlw8s"]
+[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://scenes/moving_beat.tscn" id="2_adt8a"]
 
-[node name="BeatSlidingMeasure" type="Node2D"]
-script = ExtResource("1_vfkq6")
-_moving_beat_scene = ExtResource("2_1lnih")
+[node name="BeatMeasure" type="Node2D"]
+script = ExtResource("1_rlw8s")
+_moving_beat_scene = ExtResource("2_adt8a")
 
 [node name="BeatMarkers" type="Node2D" parent="."]
 

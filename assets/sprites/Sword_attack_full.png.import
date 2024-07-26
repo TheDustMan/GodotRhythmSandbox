@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvcb3q4c3414p"
-path="res://.godot/imported/play_sound_button.png-7e88216154de1a5cb6304cbd3751ed46.ctex"
+uid="uid://cm3wej1vuu5g"
+path="res://.godot/imported/Sword_attack_full.png-659a67f806fec2b6e38f5f6669ed65fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://play_sound_button.png"
-dest_files=["res://.godot/imported/play_sound_button.png-7e88216154de1a5cb6304cbd3751ed46.ctex"]
+source_file="res://assets/sprites/Sword_attack_full.png"
+dest_files=["res://.godot/imported/Sword_attack_full.png-659a67f806fec2b6e38f5f6669ed65fc.ctex"]
 
 [params]
 

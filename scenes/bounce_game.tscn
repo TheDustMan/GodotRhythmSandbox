@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbj8pyn25yf66"]
+[gd_scene load_steps=8 format=3 uid="uid://bbj8pyn25yf66"]
 
-[ext_resource type="Script" path="res://BounceGame.gd" id="1_wke0h"]
-[ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://synchronizer.tscn" id="2_spbxy"]
-[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://beat_sliding_measure.tscn" id="3_mqb58"]
-[ext_resource type="PackedScene" uid="uid://bl7qa441o7ood" path="res://beat_bounce.tscn" id="4_2n757"]
-[ext_resource type="PackedScene" uid="uid://cbgj0mgaffebi" path="res://beat_circle.tscn" id="5_unpbx"]
+[ext_resource type="Script" path="res://scenes/bounce_game.gd" id="1_wke0h"]
+[ext_resource type="PackedScene" uid="uid://bkrxcrnc3ujmf" path="res://scenes/score.tscn" id="2_048or"]
+[ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://scenes/synchronizer.tscn" id="2_spbxy"]
+[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://scenes/beat_sliding_measure.tscn" id="3_mqb58"]
+[ext_resource type="PackedScene" uid="uid://bl7qa441o7ood" path="res://scenes/beat_bounce.tscn" id="4_2n757"]
+[ext_resource type="PackedScene" uid="uid://cbgj0mgaffebi" path="res://scenes/beat_circle.tscn" id="5_unpbx"]
+[ext_resource type="PackedScene" uid="uid://bfvr3gip13q74" path="res://scenes/test_character.tscn" id="7_7slbx"]
 
 [node name="BounceGame" type="Node2D"]
 script = ExtResource("1_wke0h")
+
+[node name="Score" parent="." instance=ExtResource("2_048or")]
+position = Vector2(618, 431)
 
 [node name="StartText" type="Label" parent="."]
 offset_left = 456.0
@@ -37,6 +42,10 @@ polygon = PackedVector2Array(174, 520, 354, 520, 354, 533, 174, 533)
 [node name="BeatCircle" parent="." instance=ExtResource("5_unpbx")]
 position = Vector2(716, 431)
 scale = Vector2(0.36073, 0.358632)
+
+[node name="TestCharacter" parent="." instance=ExtResource("7_7slbx")]
+position = Vector2(492, 509)
+scale = Vector2(4.12, 4.02442)
 
 [connection signal="primary_action" from="." to="." method="_on_primary_action"]
 [connection signal="quit_pressed" from="." to="." method="_on_quit_pressed"]

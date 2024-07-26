@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdjkk7nnress5"]
 
-[ext_resource type="Script" path="res://beat_bouncing_measure.gd" id="1_wbwm1"]
-[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://moving_beat.tscn" id="2_5adij"]
+[ext_resource type="Script" path="res://scenes/beat_bouncing_measure.gd" id="1_wbwm1"]
+[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://scenes/moving_beat.tscn" id="2_5adij"]
 
 [sub_resource type="Curve2D" id="Curve2D_fmgyj"]
 _data = {

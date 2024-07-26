@@ -57,19 +57,27 @@ func _increment_timer_counter() ->void:
 		_counter = 0
 
 func _on_timeout(timer: Timer) -> void:
-	pass
+	$Label.text = "Miss Late!"
+	Events.emit_signal("beat_miss_late", {})
 
 func _on_action_pressed() -> void:
 	print("-------")
 	for timer in _timers:
 		var elapsed_time = timer.wait_time - timer.time_left
-		if not timer.is_stopped() and elapsed_time > _time_between_beats / 2.0:
+		if not timer.is_stopped() and elapsed_time > _time_between_beats / 4.0:
 			var offset: float = absf(_time_between_beats - elapsed_time) - _perfect_offset
-			if elapsed_time < _time_between_beats - _perfect_offset:
+			if elapsed_time < (3.0 * _time_between_beats / 4.0):
+				$Label.text = "Miss Early!"
+				Events.emit_signal("beat_miss_early", {})
+			elif elapsed_time < _time_between_beats - _perfect_offset:
 				$Label.text = "Early!"
 				print("Early by ", offset)
+				Events.emit_signal("beat_early", {})
 			elif elapsed_time > _time_between_beats + _perfect_offset:
 				print("Late by ", offset)
 				$Label.text = "Late!"
+				Events.emit_signal("beat_late", {})
 			else:
 				$Label.text = "Perfect!"
+				Events.emit_signal("beat_perfect", {})
+			timer.stop()

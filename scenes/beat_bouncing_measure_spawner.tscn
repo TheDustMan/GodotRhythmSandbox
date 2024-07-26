@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsx8u00iyt0gk"]
 
-[ext_resource type="Script" path="res://beat_bouncing_measure_spawner.gd" id="1_2ex0n"]
+[ext_resource type="Script" path="res://scenes/beat_bouncing_measure_spawner.gd" id="1_2ex0n"]
 
 [sub_resource type="Curve2D" id="Curve2D_fmgyj"]
 _data = {
