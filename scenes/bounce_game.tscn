@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://scenes/beat_sliding_measure.tscn" id="3_mqb58"]
 [ext_resource type="PackedScene" uid="uid://bl7qa441o7ood" path="res://scenes/beat_bounce.tscn" id="4_2n757"]
 [ext_resource type="PackedScene" uid="uid://cbgj0mgaffebi" path="res://scenes/beat_circle.tscn" id="5_unpbx"]
-[ext_resource type="PackedScene" uid="uid://bfvr3gip13q74" path="res://scenes/test_character.tscn" id="7_7slbx"]
+[ext_resource type="PackedScene" uid="uid://bfvr3gip13q74" path="res://scenes/sword_attack_character.tscn" id="7_7slbx"]
 
 [node name="BounceGame" type="Node2D"]
 script = ExtResource("1_wke0h")

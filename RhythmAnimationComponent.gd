@@ -11,9 +11,6 @@ var _pre_beat_animation_time: float = 0.0
 var _post_beat_time: float = 0.0
 var _time_to_next_beat: float = 0.0
 
-# What do I want?
-# - on the beat, play the "beat_frame"
-# - 
 
 func _ready() -> void:
 	Events.connect("beat_incremented", Callable(self, "_on_beat"))
