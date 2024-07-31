@@ -69,13 +69,13 @@ animations = [{
 
 [node name="SwordAttackCharacter" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_ygaxr")
-animation = &"attack"
-
 [node name="RhythmAnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("2_jbsk7")
 animated_sprite = NodePath("../AnimatedSprite2D")
 animation_name = "attack"
 beat_frame = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ygaxr")
+animation = &"attack"

@@ -1,9 +1,9 @@
 extends Node2D
 
-
 @export var animated_sprite: AnimatedSprite2D = null
 @export var animation_name: String = ""
 @export var beat_frame: int = 0
+@export var pattern: Array[]
 
 var _time_between_beats: float = 0.0
 var _post_beat_enabled: bool = false
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 		_post_beat_enabled = false
 
 func _on_beat_started(msg: Dictionary) -> void:
-	_time_between_beats = (1.0 / (msg.bpm / 60.0))
+	_time_between_beats = 1.0 / (msg.bpm / 60.0)
 	_time_to_next_beat = _time_between_beats
 	_post_beat_time = 0.0
 	_post_beat_enabled = true
