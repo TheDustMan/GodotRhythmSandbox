@@ -3,7 +3,6 @@ extends Node2D
 @export var animated_sprite: AnimatedSprite2D = null
 @export var animation_name: String = ""
 @export var beat_frame: int = 0
-@export var pattern: Array[]
 
 var _time_between_beats: float = 0.0
 var _post_beat_enabled: bool = false

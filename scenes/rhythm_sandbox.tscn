@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://qfdnp4pliele"]
 
 [ext_resource type="Script" path="res://scenes/rhythm_sandbox.gd" id="1_ngdtg"]
-[ext_resource type="Script" path="res://scenes/Synchronizer.gd" id="2_j61w5"]
+[ext_resource type="Script" path="res://scenes/synchronizer.gd" id="2_j61w5"]
 [ext_resource type="FontFile" uid="uid://dh3iuml41q2uq" path="res://lcd.ttf" id="3_gqr5j"]
 [ext_resource type="AudioStream" uid="uid://dumjxbamq37fe" path="res://assets/sounds/the_comeback2.ogg" id="4_h6xin"]
 [ext_resource type="Texture2D" uid="uid://cdpaolglwepko" path="res://assets/ui/play_system_button.png" id="5_3ktcc"]

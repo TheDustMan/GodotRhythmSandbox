@@ -18,8 +18,8 @@ config/icon="res://icon.webp"
 
 [autoload]
 
-Events="*res://scripts/Events.gd"
-Enums="*res://scripts/Enums.gd"
+Events="*res://scripts/events.gd"
+Enums="*res://scripts/enums.gd"
 
 [debug]
 

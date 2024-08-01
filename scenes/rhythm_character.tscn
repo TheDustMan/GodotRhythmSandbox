@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2mn3n1ys1iwk"]
 
-[ext_resource type="Script" path="res://scripts/RhythmPattern.gd" id="1_2b17y"]
+[ext_resource type="Script" path="res://scripts/rhythm_pattern.gd" id="1_2b17y"]
 [ext_resource type="Script" path="res://scenes/rhythm_character.gd" id="1_4spp1"]
-[ext_resource type="Script" path="res://scripts/RhythmPatternPlayer.gd" id="2_g3g50"]
-[ext_resource type="Script" path="res://scenes/RhythmEventHandler.gd" id="3_u787t"]
+[ext_resource type="Script" path="res://scripts/rhythm_pattern_player.gd" id="2_g3g50"]
+[ext_resource type="Script" path="res://scenes/rhythm_event_handler.gd" id="3_u787t"]
 
 [node name="RhythmCharacter" type="Node2D"]
 script = ExtResource("1_4spp1")

@@ -16,8 +16,8 @@ class_name RhythmPatternPlayer
 # - How does this class track when an event passes? 
 
 # Preloads
-var RhythmPattern = preload("res://scripts/RhythmPattern.gd")
-var RhythmEvent = preload("res://scripts/RhythmEvent.gd")
+var RhythmPattern = preload("res://scripts/rhythm_pattern.gd")
+var RhythmEvent = preload("res://scripts/rhythm_event.gd")
 
 # Broadcasts the time until the next event is scheduled to occur
 signal next_pattern_event(event: RhythmEvent)
