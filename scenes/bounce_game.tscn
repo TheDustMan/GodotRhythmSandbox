@@ -45,10 +45,12 @@ position = Vector2(716, 431)
 scale = Vector2(0.36073, 0.358632)
 
 [node name="TestCharacter" parent="." instance=ExtResource("7_7slbx")]
-position = Vector2(492, 509)
+position = Vector2(467, 552)
 scale = Vector2(4.12, 4.02442)
 
 [node name="RhythmCharacter" parent="." instance=ExtResource("8_xiram")]
+position = Vector2(609, 554)
+scale = Vector2(3.71911, 3.71911)
 
 [connection signal="primary_action" from="." to="." method="_on_primary_action"]
 [connection signal="quit_pressed" from="." to="." method="_on_quit_pressed"]

@@ -31,7 +31,7 @@ func start() -> void:
 	}
 	_load_track(msg)
 	Events.emit_signal("beat_started", msg)
-	
+
 func stop() -> void:
 	_reset()
 	playing = false
@@ -56,18 +56,18 @@ func _process(_delta: float) -> void:
 
 	var time := 0.0
 	time = _stream.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
-	
+
 	var beat := int(time * bpm / 60.0)
 	if beat != last_beat:
-		Events.emit_signal("beat_incremented", {"bpm" : bpm})
-	last_beat = beat
-	last_beat_time = time
+		Events.emit_signal("beat_incremented", {"bpm" : bpm, "time_since_last_beat" : Time.get_unix_time_from_system() - last_beat_time})
+		last_beat = beat
+		last_beat_time = Time.get_unix_time_from_system()
 
 func _load_track(msg: Dictionary) -> void:
 	_stream.stream = load(msg.stream)
 	bpm = msg.bpm
 	play_audio()
-	
+
 func _reset() -> void:
 	last_beat = 0
 	last_beat_time = 0

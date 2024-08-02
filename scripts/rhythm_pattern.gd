@@ -2,7 +2,7 @@ extends Node
 class_name RhythmPattern
 # How is this used?
 # Someone defines a pattern, then another component must access the
-# timings within to coordinate actions according to the timings in the 
+# timings within to coordinate actions according to the timings in the
 # pattern
 
 
@@ -10,7 +10,7 @@ class_name RhythmPattern
 @export var pattern_name: String
 
 # Number of beats before the pattern starts.
-# If looping, this will be the number of beats before the next 
+# If looping, this will be the number of beats before the next
 # instance of the pattern begins
 @export var leading_beats: float
 
@@ -21,11 +21,11 @@ class_name RhythmPattern
 # Returns the series of timings for this pattern
 func get_events_times() -> Array[float]:
 	return event_times
-	
-# Note: Will raise IndexError exception if index is out of bounds 
+
+# Note: Will raise IndexError exception if index is out of bounds
 func get_event(index: int) -> float:
 	return event_times[index]
-	
+
 # The number of events
 func get_event_count() -> int:
 	return event_times.size()

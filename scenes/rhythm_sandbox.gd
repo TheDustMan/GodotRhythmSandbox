@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 		time -= time_delay
 	elif sync_source == SyncSource.SOUND_CLOCK:
 		time = $Player.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
-	
+
 	var beat := int(time * BPM / 60.0)
 	if beat != last_beat:
 		Events.emit_signal("beat_incremented", {"bpm" : BPM})

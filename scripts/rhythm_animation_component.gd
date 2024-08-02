@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 	if not _post_beat_enabled:
 		return
-	
+
 	_post_beat_time += delta
 	var time_per_post_frame: float = _post_beat_animation_time / (animated_sprite.sprite_frames.get_frame_count(animation_name) - beat_frame)
 	animated_sprite.frame = beat_frame + floorf(_post_beat_time / time_per_post_frame)
@@ -42,7 +42,7 @@ func _on_beat_started(msg: Dictionary) -> void:
 	_post_beat_enabled = true
 	_pre_beat_animation_time = _time_between_beats / 4.0
 	_post_beat_animation_time = _time_between_beats / 2.0
-	
+
 func _on_beat(msg: Dictionary) -> void:
 	_time_to_next_beat = _time_between_beats
 	animated_sprite.frame = beat_frame

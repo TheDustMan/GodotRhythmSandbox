@@ -35,16 +35,16 @@ func _on_quit_pressed() -> void:
 
 func _on_primary_action() -> void:
 	$BeatCircle._on_action()
-	
+
 func _on_beat_early(msg: Dictionary) -> void:
 	$Score.increment(1)
-	
+
 func _on_beat_late(msg: Dictionary) -> void:
 	$Score.increment(1)
-	
+
 func _on_beat_perfect(msg: Dictionary) -> void:
 	$Score.increment(1)
-	
+
 func _on_beat_miss_late(msg: Dictionary) -> void:
 	$Score.reset()
 
