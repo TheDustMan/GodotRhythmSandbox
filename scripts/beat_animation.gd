@@ -1,5 +1,9 @@
 extends Node2D
 
+# This script will play a sprite's animation so that a specific frame
+# lands on the beat, for every beat broadcasted by the central audio
+# synchronizer
+
 @export var animated_sprite: AnimatedSprite2D = null
 @export var animation_name: String = ""
 @export var beat_frame: int = 0
@@ -10,13 +14,19 @@ var _post_beat_animation_time: float = 0.0
 var _pre_beat_animation_time: float = 0.0
 var _post_beat_time: float = 0.0
 var _time_to_next_beat: float = 0.0
-
+var _configuration_error: bool = false
 
 func _ready() -> void:
 	Events.connect("beat_incremented", Callable(self, "_on_beat"))
 	Events.connect("beat_started", Callable(self, "_on_beat_started"))
+	if animation_name not in animated_sprite.sprite_frames.get_animation_names():
+		print("animation_name=", animation_name, " not found in sprite")
+		_configuration_error = true
 
 func _process(delta: float) -> void:
+	if _configuration_error:
+		return
+
 	_time_to_next_beat = maxf(0.0, _time_to_next_beat - delta)
 	if _time_to_next_beat < _pre_beat_animation_time:
 		if beat_frame == 0:

@@ -14,10 +14,10 @@ func _ready() -> void:
 	Events.connect("beat_started", Callable(self, "_on_beat_started"))
 	Events.connect("beat_incremented", Callable(self, "_on_beat"))
 	Events.connect("primary_action_pressed", Callable(self, "_on_action_pressed"))
-	
+
 	for i in range(_timers.size()):
 		_timers[i] = Timer.new()
-		_timers[i].name = "timer:" + str(i) 
+		_timers[i].name = "timer:" + str(i)
 		_timers[i].one_shot = true
 		_timers[i].connect("timeout", Callable(self, "_on_timeout").bind(_timers[i]))
 		add_child(_timers[i])
@@ -41,7 +41,7 @@ func _on_beat(msg: Dictionary):
 		_time_between_beats)
 	property_tween.from(_initial_scale * 1.5)
 	_tween.play()
-	
+
 
 	var timer: Timer = _get_current_timer()
 	timer.wait_time = _time_between_beats + (_time_between_beats / 4.0)

@@ -12,14 +12,14 @@ config_version=5
 
 config/name="Rhythm Sandbox"
 config/description="A sandbox for experimenting with rhythm game elements"
-run/main_scene="res://scenes/rhythm_sandbox.tscn"
+run/main_scene="res://scenes/levels/rhythm_sandbox/rhythm_sandbox.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.webp"
 
 [autoload]
 
-Events="*res://scripts/events.gd"
-Enums="*res://scripts/enums.gd"
+Events="*res://scripts/preloads/events.gd"
+Enums="*res://scripts/preloads/enums.gd"
 
 [debug]
 

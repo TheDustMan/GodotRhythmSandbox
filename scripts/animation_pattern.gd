@@ -1,6 +1,11 @@
 extends Node
 class_name AnimationPattern
 
+# Lets you define an ordering or animations. Meant to be used in conjunction
+# with other components that can utilize this ordering to play these animations
+# with this ordering (such as using a rhythim pattern to switch between
+# animations)
+
 # A name that this pattern can be referenced by
 @export var pattern_name: String
 

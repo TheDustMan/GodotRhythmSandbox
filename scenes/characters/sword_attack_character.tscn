@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bfvr3gip13q74"]
 
 [ext_resource type="Texture2D" uid="uid://cm3wej1vuu5g" path="res://assets/sprites/Sword_attack_full.png" id="1_h1xox"]
-[ext_resource type="Script" path="res://scripts/rhythm_animation_component.gd" id="2_jbsk7"]
+[ext_resource type="Script" path="res://scripts/beat_animation.gd" id="2_es3yn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pke63"]
 atlas = ExtResource("1_h1xox")
@@ -69,13 +69,13 @@ animations = [{
 
 [node name="SwordAttackCharacter" type="Node2D"]
 
-[node name="RhythmAnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
-script = ExtResource("2_jbsk7")
-animated_sprite = NodePath("../AnimatedSprite2D")
-animation_name = "attack"
-beat_frame = 3
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ygaxr")
 animation = &"attack"
+
+[node name="BeatAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("2_es3yn")
+animated_sprite = NodePath("../AnimatedSprite2D")
+animation_name = "attack"
+beat_frame = 3

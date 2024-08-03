@@ -16,10 +16,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:
 	pass
-	
+
 func _on_beat(msg: Dictionary) -> void:
 	if _beat_counter >= _beat_markers.size():
 		_beat_counter = 0
 	_moving_beat.position = _beat_markers[_beat_counter].position
 	_beat_counter += 1
-	
+

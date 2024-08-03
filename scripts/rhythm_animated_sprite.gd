@@ -1,6 +1,10 @@
 extends Node
 class_name RhythmAnimatedSprite
 
+# A wrapper around an AnimatedSprite2D that let's you specify various
+# timing aspects of how each animation should behave when played to
+# the rhythm (defined within RhythmAnimationData)
+
 @export var animated_sprite: AnimatedSprite2D
 @export var rhythm_animation_data: Array[RhythmAnimationData]
 

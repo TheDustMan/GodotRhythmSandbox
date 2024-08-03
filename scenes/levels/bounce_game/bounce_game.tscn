@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://bbj8pyn25yf66"]
 
-[ext_resource type="Script" path="res://scenes/bounce_game.gd" id="1_wke0h"]
-[ext_resource type="PackedScene" uid="uid://bkrxcrnc3ujmf" path="res://scenes/score.tscn" id="2_048or"]
-[ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://scenes/synchronizer.tscn" id="2_spbxy"]
-[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://scenes/beat_sliding_measure.tscn" id="3_mqb58"]
-[ext_resource type="PackedScene" uid="uid://bl7qa441o7ood" path="res://scenes/beat_bounce.tscn" id="4_2n757"]
-[ext_resource type="PackedScene" uid="uid://cbgj0mgaffebi" path="res://scenes/beat_circle.tscn" id="5_unpbx"]
-[ext_resource type="PackedScene" uid="uid://bfvr3gip13q74" path="res://scenes/sword_attack_character.tscn" id="7_7slbx"]
-[ext_resource type="PackedScene" uid="uid://c2mn3n1ys1iwk" path="res://scenes/rhythm_character.tscn" id="8_xiram"]
+[ext_resource type="Script" path="res://scenes/levels/bounce_game/bounce_game.gd" id="1_wke0h"]
+[ext_resource type="PackedScene" uid="uid://bkrxcrnc3ujmf" path="res://scenes/levels/bounce_game/score.tscn" id="2_048or"]
+[ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://scenes/audio/synchronizer.tscn" id="2_spbxy"]
+[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://scenes/rhythm_widgets/beat_sliding_measure.tscn" id="3_mqb58"]
+[ext_resource type="PackedScene" uid="uid://bl7qa441o7ood" path="res://scenes/rhythm_widgets/beat_bounce.tscn" id="4_2n757"]
+[ext_resource type="PackedScene" uid="uid://cbgj0mgaffebi" path="res://scenes/rhythm_widgets/beat_circle.tscn" id="5_unpbx"]
+[ext_resource type="PackedScene" uid="uid://bfvr3gip13q74" path="res://scenes/characters/sword_attack_character.tscn" id="7_7slbx"]
+[ext_resource type="PackedScene" uid="uid://c2mn3n1ys1iwk" path="res://scenes/characters/rhythm_character.tscn" id="8_xiram"]
 
 [node name="BounceGame" type="Node2D"]
 script = ExtResource("1_wke0h")

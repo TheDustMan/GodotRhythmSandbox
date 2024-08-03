@@ -14,6 +14,14 @@ class_name RhythmPatternPlayer
 # - One at a time
 # - When the current event expires, need to immediately send out the next with the correct “time_util” value
 # - How does this class track when an event passes?
+#   -> It knows at what time in the future the event will occur, uses
+#      a variable to track the amount of time passed since the future
+#      event was first seen. This time tracker is incremented by the amount
+#      of time that passes between beats, along with an intermediate time
+#      tracker that is used to track time since the last beat.
+#      THe event "occurs" when beat_time + intermediate_time >= event_time
+
+# Signals
 
 # Broadcasts the time until the next event is scheduled to occur
 signal next_rhythm_event(event: RhythmEvent)
@@ -22,6 +30,8 @@ signal next_rhythm_event(event: RhythmEvent)
 # TODO add name of pattern?
 signal pattern_complete()
 
+# Exports
+
 # The available patterns to play, with a name assigned to each one
 @export var	patterns: Array[RhythmPattern]
 
@@ -29,10 +39,6 @@ signal pattern_complete()
 
 # Indicates which is the next event to broadcast when playing a pattern
 var _pattern_index: int = 0
-
-# The timer to use for waiting for each individual event in a pattern to
-# expire
-var _pattern_timer: Timer = null
 
 # The number of times to repeat the pattern being played
 var _pattern_repeats: int = 1
@@ -87,10 +93,6 @@ func _ready() -> void:
 	_pattern_repeats = 0
 	_pattern_play_count = 0
 	_pattern_index = 0
-	#_pattern_timer = Timer.new()
-	#_pattern_timer.autostart = false
-	#add_child(_pattern_timer)
-	#_pattern_timer.connect("timeout", Callable(self, "_on_pattern_timer_timeout"))
 
 func _process(delta: float) -> void:
 	# If there's a new pattern being played, we want to stall until the next beat occurs
@@ -141,12 +143,9 @@ func stop(name: String = "") -> void:
 	_pattern_name = ""
 	_pattern_play_count = 0
 	_pattern_repeats = 0
-	#_pattern_timer.stop()
 	_pattern_index = 0
-	pass
 
 func _on_event_complete() -> void:
-	# TODO
 	# Increment pattern index so that next event is accessed
 	_pattern_index += 1
 	var proceed: bool = true
@@ -171,10 +170,6 @@ func _on_event_complete() -> void:
 
 func _prepare_next_event() -> void:
 	# Calculate time to next event
-	# TODO: Right now this will be done entirely using timers,
-	#   but we eventually need to integrate this with the beat
-	#   to keep it more in sync with the music
-
 	var leading_beats: float = 0.0
 	if _pattern_index == 0:
 		# The first event will have extra lead time defined
@@ -185,19 +180,18 @@ func _prepare_next_event() -> void:
 
 	var leading_time: float = leading_beats * _time_between_beats
 	var time_until_event: float = leading_time + (beats_until_event * _time_between_beats)
-	#_pattern_timer.wait_time = leading_time + time_until_event
-	#_pattern_timer.start()
+
 	#print("emitting[", _pattern_index, "] time_until=", time_until_event)
 	#print("emitting[", _pattern_index, "] pattern_name=", _pattern_name)
 	#print("emitting[", _pattern_index, "] at time=", Time.get_unix_time_from_system())
+	#print("_time_began_event_tracking=", _time_began_event_tracking, ", time_until_event=", time_until_event)
+	#print("slated to occur in the future=", _time_event_should_occur[_pattern_index])
+	#print("set intermediate to 0 for index=", _pattern_index)
 
 	_time_began_event_tracking = Time.get_unix_time_from_system();
-	#print("_time_began_event_tracking=", _time_began_event_tracking, ", time_until_event=", time_until_event)
 	_time_event_should_occur = _time_began_event_tracking + time_until_event
-	#print("slated to occur in the future=", _time_event_should_occur[_pattern_index])
 	_time_progress_updated_by_beat = _time_began_event_tracking
 	_intermediate_processing_progress = 0.0
-	#print("set intermediate to 0 for index=", _pattern_index)
 
 	next_rhythm_event.emit(RhythmEvent.new(_pattern_name, _pattern_index, time_until_event))
 
@@ -210,9 +204,8 @@ func _on_beat(msg: Dictionary) -> void:
 		_intermediate_processing_progress = 0.0
 		_new_upcoming_pattern = false
 	else:
-		#print("beat")
 		#print("_time_progress_updated_by_beat=", _time_progress_updated_by_beat, ", msg.time_since_last_beat=", msg.time_since_last_beat)
-		_time_progress_updated_by_beat+= msg.time_since_last_beat
 		#print("calculated time bw beats=", _time_between_beats, ", actual time=", msg.time_since_last_beat)
+		_time_progress_updated_by_beat+= msg.time_since_last_beat
 		_intermediate_processing_progress = 0.0
 

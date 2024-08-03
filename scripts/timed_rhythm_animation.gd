@@ -1,6 +1,8 @@
 extends Node
 class_name TimedRhythmAnimation
 
+# Plays a rhythm animatation at a specified time in the future
+
 var _sprite: RhythmAnimatedSprite = null
 var _animation_name: String = ""
 var _time_until: float = 0.0

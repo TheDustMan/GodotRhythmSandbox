@@ -1,10 +1,12 @@
 extends Node
 class_name RhythmPattern
+
 # How is this used?
 # Someone defines a pattern, then another component must access the
 # timings within to coordinate actions according to the timings in the
 # pattern
 
+# Exports
 
 # A name that this pattern can be referenced by
 @export var pattern_name: String
@@ -17,6 +19,8 @@ class_name RhythmPattern
 # Array of floats representing the number of beats between actions
 # once the pattern begins
 @export var event_times: Array[float]
+
+# Public Methods
 
 # Returns the series of timings for this pattern
 func get_events_times() -> Array[float]:

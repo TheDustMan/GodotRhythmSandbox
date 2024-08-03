@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdjkk7nnress5"]
+[gd_scene load_steps=3 format=3 uid="uid://bsx8u00iyt0gk"]
 
-[ext_resource type="Script" path="res://scenes/beat_bouncing_measure.gd" id="1_wbwm1"]
-[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://scenes/moving_beat.tscn" id="2_5adij"]
+[ext_resource type="Script" path="res://scenes/rhythm_widgets/beat_bouncing_measure_spawner.gd" id="1_2ex0n"]
 
 [sub_resource type="Curve2D" id="Curve2D_fmgyj"]
 _data = {
@@ -9,9 +8,8 @@ _data = {
 }
 point_count = 3
 
-[node name="BeatBouncingMeasure" type="Node2D"]
-script = ExtResource("1_wbwm1")
-_moving_beat_scene = ExtResource("2_5adij")
+[node name="BeatBouncingMeasureSpawner" type="Node2D"]
+script = ExtResource("1_2ex0n")
 
 [node name="BeatMarkers" type="Node2D" parent="."]
 
@@ -52,8 +50,6 @@ curve = SubResource("Curve2D_fmgyj")
 [node name="PathFollow2D" type="PathFollow2D" parent="BeatPaths/Beat1Path"]
 rotation = -0.88035
 
-[node name="MovingBeat" parent="BeatPaths/Beat1Path/PathFollow2D" instance=ExtResource("2_5adij")]
-
 [node name="Beat2Path" type="Path2D" parent="BeatPaths"]
 position = Vector2(300, 0)
 curve = SubResource("Curve2D_fmgyj")
@@ -61,13 +57,9 @@ curve = SubResource("Curve2D_fmgyj")
 [node name="PathFollow2D" type="PathFollow2D" parent="BeatPaths/Beat2Path"]
 rotation = -0.88035
 
-[node name="MovingBeat" parent="BeatPaths/Beat2Path/PathFollow2D" instance=ExtResource("2_5adij")]
-
 [node name="Beat3Path" type="Path2D" parent="BeatPaths"]
 position = Vector2(600, 0)
 curve = SubResource("Curve2D_fmgyj")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="BeatPaths/Beat3Path"]
 rotation = -0.88035
-
-[node name="MovingBeat" parent="BeatPaths/Beat3Path/PathFollow2D" instance=ExtResource("2_5adij")]

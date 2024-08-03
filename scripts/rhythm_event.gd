@@ -1,6 +1,8 @@
 extends Object
 class_name RhythmEvent
 
+# Data broadcasted about each event when a rhythm pattern is being played
+
 var name: String
 var index: int
 var time_until: float

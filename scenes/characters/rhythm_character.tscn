@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://c2mn3n1ys1iwk"]
 
 [ext_resource type="Script" path="res://scripts/rhythm_pattern.gd" id="1_2b17y"]
-[ext_resource type="Script" path="res://scenes/rhythm_character.gd" id="1_4spp1"]
+[ext_resource type="Script" path="res://scenes/characters/rhythm_character.gd" id="1_4spp1"]
 [ext_resource type="Script" path="res://scripts/rhythm_pattern_player.gd" id="2_g3g50"]
 [ext_resource type="Script" path="res://scripts/animation_pattern.gd" id="5_gjy82"]
-[ext_resource type="Script" path="res://scenes/rhythm_animation_coordinator.gd" id="6_cbigu"]
+[ext_resource type="Script" path="res://scripts/rhythm_animation_coordinator.gd" id="6_cbigu"]
 [ext_resource type="PackedScene" uid="uid://dofe5dxhdq6yr" path="res://scenes/characters/sword_character.tscn" id="7_dhhn8"]
-[ext_resource type="Script" path="res://scenes/rhythm_animated_sprite.gd" id="8_mthle"]
+[ext_resource type="Script" path="res://scripts/rhythm_animated_sprite.gd" id="8_mthle"]
 [ext_resource type="Script" path="res://scripts/rhythm_animation_data.gd" id="9_iao1a"]
 
 [sub_resource type="Resource" id="Resource_8me2e"]
