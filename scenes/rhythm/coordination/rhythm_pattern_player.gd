@@ -175,23 +175,27 @@ func _prepare_next_event() -> void:
 		# The first event will have extra lead time defined
 		# for the entire pattern
 		leading_beats = _pattern_lookup[_pattern_name].get_leading_beats()
+		#print("_pattern_index==0, leading_beats=", leading_beats)
 
-	var beats_until_event: float = _pattern_lookup[_pattern_name].get_event(_pattern_index)
+	var beats_until_event: float = _pattern_lookup[_pattern_name].get_event_time(_pattern_index)
 
 	var leading_time: float = leading_beats * _time_between_beats
 	var time_until_event: float = leading_time + (beats_until_event * _time_between_beats)
 
+	#print("_pattern_lookup[", _pattern_name, "].get_leading_beats()=", _pattern_lookup[_pattern_name].get_leading_beats())
 	#print("emitting[", _pattern_index, "] time_until=", time_until_event)
 	#print("emitting[", _pattern_index, "] pattern_name=", _pattern_name)
 	#print("emitting[", _pattern_index, "] at time=", Time.get_unix_time_from_system())
 	#print("_time_began_event_tracking=", _time_began_event_tracking, ", time_until_event=", time_until_event)
-	#print("slated to occur in the future=", _time_event_should_occur[_pattern_index])
+	#print("slated to occur in the future=", _time_event_should_occur)
 	#print("set intermediate to 0 for index=", _pattern_index)
 
 	_time_began_event_tracking = Time.get_unix_time_from_system();
 	_time_event_should_occur = _time_began_event_tracking + time_until_event
 	_time_progress_updated_by_beat = _time_began_event_tracking
 	_intermediate_processing_progress = 0.0
+	#print("slated to occur in the future=", _time_event_should_occur, ", time_until=", time_until_event)
+	#print("leading_time=", leading_time, ", leading_beats=", leading_beats)
 
 	next_rhythm_event.emit(RhythmEvent.new(_pattern_name, _pattern_index, time_until_event))
 
@@ -206,6 +210,8 @@ func _on_beat(msg: Dictionary) -> void:
 	else:
 		#print("_time_progress_updated_by_beat=", _time_progress_updated_by_beat, ", msg.time_since_last_beat=", msg.time_since_last_beat)
 		#print("calculated time bw beats=", _time_between_beats, ", actual time=", msg.time_since_last_beat)
-		_time_progress_updated_by_beat+= msg.time_since_last_beat
+		#print("Beat time=", msg.time_since_last_beat, ", actual diff=", Time.get_unix_time_from_system() - _time_progress_updated_by_beat)
+		#_time_progress_updated_by_beat += msg.time_since_last_beat
+		_time_progress_updated_by_beat = Time.get_unix_time_from_system()
 		_intermediate_processing_progress = 0.0
 

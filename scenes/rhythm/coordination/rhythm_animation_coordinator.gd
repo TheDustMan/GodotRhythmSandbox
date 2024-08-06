@@ -48,6 +48,7 @@ func _on_rhythm_pattern_player_next_rhythm_event(event: RhythmEvent) ->void:
 	if _animation_index >= animation_pattern.get_animation_count():
 		_animation_index = 0
 	#print("next animation=", animation_pattern.get_animation_name(_animation_index), ", time_until=", event.time_until)
+	#print("  receive time=", Time.get_unix_time_from_system())
 	var _timed_animation := TimedRhythmAnimation.new(
 			rhythm_animated_sprite,
 			animation_pattern.get_animation_name(_animation_index),

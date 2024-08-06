@@ -16,3 +16,6 @@ class_name RhythmAnimationData
 # The number of beats after the beat_frame to finishing playing remainder
 # of the animation
 @export var post_beats: float = 0.0
+
+# Whether to only play the beat_frame (ignores any specified pre-/post-beat times
+@export var beat_frame_only: bool = false

@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkpck5cq0sctq"]
+
+[ext_resource type="Script" path="res://scenes/levels/hit_game/hit_game.gd" id="1_nff7c"]
+[ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://scenes/audio/synchronizer.tscn" id="2_bc67f"]
+[ext_resource type="PackedScene" uid="uid://rp0kgsxo4241" path="res://scenes/rhythm/coordination/rhythm_pattern.tscn" id="3_e4l6n"]
+[ext_resource type="PackedScene" uid="uid://dkkvaaq55kwc0" path="res://scenes/rhythm/coordination/animation_pattern.tscn" id="4_i1fvc"]
+[ext_resource type="PackedScene" uid="uid://gj1f8glo3brn" path="res://scenes/rhythm/coordination/rhythm_pattern_player.tscn" id="5_h6h1e"]
+[ext_resource type="PackedScene" uid="uid://nfgn82i825vk" path="res://scenes/rhythm/coordination/rhythm_animation_coordinator.tscn" id="6_2xkpj"]
+[ext_resource type="PackedScene" uid="uid://dofe5dxhdq6yr" path="res://scenes/characters/sword_character_animated_sprite.tscn" id="7_2hl13"]
+[ext_resource type="PackedScene" uid="uid://c321tbwne4g83" path="res://scenes/rhythm/coordination/rhythm_animated_sprite.tscn" id="8_fox5n"]
+[ext_resource type="Script" path="res://scripts/rhythm_animation_data.gd" id="9_84e5o"]
+
+[sub_resource type="Resource" id="Resource_n530c"]
+script = ExtResource("9_84e5o")
+animation_name = "up_attack"
+beat_frame = 3
+pre_beats = 0.5
+post_beats = 0.5
+beat_frame_only = true
+
+[sub_resource type="Resource" id="Resource_5wgyg"]
+script = ExtResource("9_84e5o")
+animation_name = "down_attack"
+beat_frame = 3
+pre_beats = 0.5
+post_beats = 0.5
+beat_frame_only = true
+
+[sub_resource type="Resource" id="Resource_yxsw1"]
+script = ExtResource("9_84e5o")
+animation_name = "right_attack"
+beat_frame = 4
+pre_beats = 0.5
+post_beats = 0.5
+beat_frame_only = true
+
+[sub_resource type="Resource" id="Resource_5hreo"]
+script = ExtResource("9_84e5o")
+animation_name = "left_attack"
+beat_frame = 4
+pre_beats = 0.5
+post_beats = 0.5
+beat_frame_only = true
+
+[node name="HitGame" type="Node2D"]
+script = ExtResource("1_nff7c")
+
+[node name="Synchronizer" parent="." instance=ExtResource("2_bc67f")]
+
+[node name="Patterns" type="Node" parent="."]
+
+[node name="Rhythm" type="Node" parent="Patterns"]
+
+[node name="TestRhythmPattern" parent="Patterns/Rhythm" instance=ExtResource("3_e4l6n")]
+pattern_name = "test"
+leading_beats = 1.0
+event_times = Array[float]([1.0, 1.0, 1.0, 1.0])
+
+[node name="FastRhythmPattern" parent="Patterns/Rhythm" instance=ExtResource("3_e4l6n")]
+pattern_name = "fast"
+event_times = Array[float]([0.25])
+
+[node name="Animation" type="Node" parent="Patterns"]
+
+[node name="TestAnimationPattern" parent="Patterns/Animation" instance=ExtResource("4_i1fvc")]
+pattern_name = "test"
+animations = Array[String](["up_attack", "left_attack", "down_attack", "right_attack"])
+
+[node name="RhythmPatternPlayer" parent="." node_paths=PackedStringArray("patterns") instance=ExtResource("5_h6h1e")]
+patterns = [NodePath("../Patterns/Rhythm/TestRhythmPattern"), NodePath("../Patterns/Rhythm/FastRhythmPattern")]
+
+[node name="RhythmAnimationCoordinator" parent="." node_paths=PackedStringArray("rhythm_animated_sprite", "animation_pattern") instance=ExtResource("6_2xkpj")]
+rhythm_animated_sprite = NodePath("../RhythmAnimatedSprite")
+animation_pattern = NodePath("../Patterns/Animation/TestAnimationPattern")
+
+[node name="SwordCharacterAnimatedSprite" parent="." instance=ExtResource("7_2hl13")]
+position = Vector2(445, 264)
+scale = Vector2(5.56816, 5.56816)
+
+[node name="RhythmAnimatedSprite" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("8_fox5n")]
+animated_sprite = NodePath("../SwordCharacterAnimatedSprite")
+rhythm_animation_data = Array[ExtResource("9_84e5o")]([SubResource("Resource_n530c"), SubResource("Resource_5wgyg"), SubResource("Resource_yxsw1"), SubResource("Resource_5hreo")])
+
+[connection signal="start_pressed" from="." to="." method="_on_start_pressed"]
+[connection signal="next_rhythm_event" from="RhythmPatternPlayer" to="RhythmAnimationCoordinator" method="_on_rhythm_pattern_player_next_rhythm_event"]

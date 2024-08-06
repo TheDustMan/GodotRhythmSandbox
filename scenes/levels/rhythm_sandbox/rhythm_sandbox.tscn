@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://b1m28vixtwkx0" path="res://assets/ui/play_system_button_hl.png" id="6_e7apq"]
 [ext_resource type="Texture2D" uid="uid://bvcb3q4c3414p" path="res://assets/ui/play_sound_button.png" id="7_nvas8"]
 [ext_resource type="Texture2D" uid="uid://y41g3g5d88f3" path="res://assets/ui/play_sound_button_hl.png" id="8_xsiw1"]
-[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://scenes/rhythm_widgets/beat_sliding_measure.tscn" id="9_rt3xl"]
-[ext_resource type="PackedScene" uid="uid://c6pogebwv8lil" path="res://scenes/rhythm_widgets/beat_measure.tscn" id="10_bkuyi"]
-[ext_resource type="PackedScene" uid="uid://bdjkk7nnress5" path="res://scenes/rhythm_widgets/beat_bouncing_measure.tscn" id="11_16oah"]
-[ext_resource type="PackedScene" uid="uid://bsx8u00iyt0gk" path="res://scenes/rhythm_widgets/beat_bouncing_measure_spawner.tscn" id="12_knwh5"]
-[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://scenes/rhythm_widgets/moving_beat.tscn" id="13_3vu5s"]
+[ext_resource type="PackedScene" uid="uid://qpkuy8v3dype" path="res://scenes/rhythm/widgets/beat_sliding_measure.tscn" id="9_rt3xl"]
+[ext_resource type="PackedScene" uid="uid://c6pogebwv8lil" path="res://scenes/rhythm/widgets/beat_measure.tscn" id="10_bkuyi"]
+[ext_resource type="PackedScene" uid="uid://bdjkk7nnress5" path="res://scenes/rhythm/widgets/beat_bouncing_measure.tscn" id="11_16oah"]
+[ext_resource type="PackedScene" uid="uid://bsx8u00iyt0gk" path="res://scenes/rhythm/widgets/beat_bouncing_measure_spawner.tscn" id="12_knwh5"]
+[ext_resource type="PackedScene" uid="uid://crf5v1jps1lab" path="res://scenes/rhythm/widgets/moving_beat.tscn" id="13_3vu5s"]
 
 [node name="RhythmSandbox" type="Panel"]
 anchors_preset = 15
@@ -101,14 +101,24 @@ position = Vector2(133, 497)
 position = Vector2(133, 189)
 _moving_beat_scene = ExtResource("13_3vu5s")
 
-[node name="StartGame" type="Button" parent="."]
+[node name="HitGame" type="Button" parent="."]
 layout_mode = 0
-offset_left = 526.0
-offset_top = 248.0
-offset_right = 622.0
-offset_bottom = 279.0
-text = "Start Game"
+offset_left = 528.0
+offset_top = 151.0
+offset_right = 609.0
+offset_bottom = 182.0
+scale = Vector2(1.28529, 1.06586)
+text = "Hit Game"
+
+[node name="BounceGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 195.0
+offset_right = 639.0
+offset_bottom = 226.0
+text = "Bounce Game"
 
 [connection signal="pressed" from="PlaySystem" to="." method="_on_PlaySystem_pressed"]
 [connection signal="pressed" from="PlaySound" to="." method="_on_PlaySound_pressed"]
-[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="HitGame" to="." method="_on_hit_game_pressed"]
+[connection signal="pressed" from="BounceGame" to="." method="_on_start_game_pressed"]

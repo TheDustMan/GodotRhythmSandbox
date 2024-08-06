@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://nfgn82i825vk"]
+
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/rhythm_animation_coordinator.gd" id="1_htb3o"]
+
+[node name="RhythmAnimationCoordinator" type="Node"]
+script = ExtResource("1_htb3o")

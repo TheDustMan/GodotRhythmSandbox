@@ -64,3 +64,7 @@ func _on_PlaySound_pressed() -> void:
 
 func _on_start_game_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/levels/bounce_game/bounce_game.tscn")
+
+
+func _on_hit_game_pressed():
+	get_tree().change_scene_to_file("res://scenes/levels/hit_game/hit_game.tscn")

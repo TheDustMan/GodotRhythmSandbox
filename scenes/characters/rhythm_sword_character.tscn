@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://c2mn3n1ys1iwk"]
 
-[ext_resource type="Script" path="res://scripts/rhythm_pattern.gd" id="1_2b17y"]
-[ext_resource type="Script" path="res://scenes/characters/rhythm_character.gd" id="1_4spp1"]
-[ext_resource type="Script" path="res://scripts/rhythm_pattern_player.gd" id="2_g3g50"]
-[ext_resource type="Script" path="res://scripts/animation_pattern.gd" id="5_gjy82"]
-[ext_resource type="Script" path="res://scripts/rhythm_animation_coordinator.gd" id="6_cbigu"]
-[ext_resource type="PackedScene" uid="uid://dofe5dxhdq6yr" path="res://scenes/characters/sword_character.tscn" id="7_dhhn8"]
-[ext_resource type="Script" path="res://scripts/rhythm_animated_sprite.gd" id="8_mthle"]
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/rhythm_pattern.gd" id="1_2b17y"]
+[ext_resource type="Script" path="res://scenes/characters/rhythm_sword_character.gd" id="1_4spp1"]
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/animation_pattern.gd" id="2_4uty8"]
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/rhythm_pattern_player.gd" id="2_g3g50"]
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/rhythm_animation_coordinator.gd" id="5_sad4u"]
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/rhythm_animated_sprite.gd" id="6_til86"]
+[ext_resource type="PackedScene" uid="uid://dofe5dxhdq6yr" path="res://scenes/characters/sword_character_animated_sprite.tscn" id="7_dhhn8"]
 [ext_resource type="Script" path="res://scripts/rhythm_animation_data.gd" id="9_iao1a"]
 
 [sub_resource type="Resource" id="Resource_8me2e"]
@@ -15,6 +15,7 @@ animation_name = "up_attack"
 beat_frame = 3
 pre_beats = 0.5
 post_beats = 0.5
+beat_frame_only = false
 
 [sub_resource type="Resource" id="Resource_52sfq"]
 script = ExtResource("9_iao1a")
@@ -22,6 +23,7 @@ animation_name = "down_attack"
 beat_frame = 3
 pre_beats = 0.5
 post_beats = 0.5
+beat_frame_only = false
 
 [sub_resource type="Resource" id="Resource_jcbvo"]
 script = ExtResource("9_iao1a")
@@ -29,6 +31,7 @@ animation_name = "left_attack"
 beat_frame = 4
 pre_beats = 0.5
 post_beats = 0.5
+beat_frame_only = false
 
 [sub_resource type="Resource" id="Resource_dc733"]
 script = ExtResource("9_iao1a")
@@ -36,6 +39,7 @@ animation_name = "right_attack"
 beat_frame = 4
 pre_beats = 0.5
 post_beats = 0.5
+beat_frame_only = false
 
 [node name="RhythmCharacter" type="Node2D"]
 script = ExtResource("1_4spp1")
@@ -45,12 +49,12 @@ script = ExtResource("1_4spp1")
 [node name="Animations" type="Node" parent="Patterns"]
 
 [node name="UpDownLeftRightAnimationPattern" type="Node" parent="Patterns/Animations"]
-script = ExtResource("5_gjy82")
+script = ExtResource("2_4uty8")
 pattern_name = "all_directions"
 animations = Array[String](["up_attack", "down_attack", "left_attack", "right_attack"])
 
 [node name="DownAttackAnimationPattern" type="Node" parent="Patterns/Animations"]
-script = ExtResource("5_gjy82")
+script = ExtResource("2_4uty8")
 pattern_name = "down_attack_only"
 animations = Array[String](["down_attack"])
 
@@ -81,12 +85,12 @@ script = ExtResource("2_g3g50")
 patterns = [NodePath("../Patterns/Rhythms/OneBeat4TimesRhythmPattern"), NodePath("../Patterns/Rhythms/TwoBeat4TimesRhythmPattern"), NodePath("../Patterns/Rhythms/OneBeatRhythmPattern"), NodePath("../Patterns/Rhythms/HalfBeatRhythmPattern")]
 
 [node name="RhythmEventAnimationCoordinator" type="Node" parent="." node_paths=PackedStringArray("rhythm_animated_sprite", "animation_pattern")]
-script = ExtResource("6_cbigu")
+script = ExtResource("5_sad4u")
 rhythm_animated_sprite = NodePath("../RhythmAnimatedSprite")
 animation_pattern = NodePath("../Patterns/Animations/UpDownLeftRightAnimationPattern")
 
 [node name="RhythmAnimatedSprite" type="Node" parent="." node_paths=PackedStringArray("animated_sprite")]
-script = ExtResource("8_mthle")
+script = ExtResource("6_til86")
 animated_sprite = NodePath("../SwordCharacterAnimatedSprite")
 rhythm_animation_data = Array[ExtResource("9_iao1a")]([SubResource("Resource_8me2e"), SubResource("Resource_52sfq"), SubResource("Resource_jcbvo"), SubResource("Resource_dc733")])
 

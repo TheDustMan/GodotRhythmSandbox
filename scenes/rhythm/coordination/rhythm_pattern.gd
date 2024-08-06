@@ -27,7 +27,7 @@ func get_events_times() -> Array[float]:
 	return event_times
 
 # Note: Will raise IndexError exception if index is out of bounds
-func get_event(index: int) -> float:
+func get_event_time(index: int) -> float:
 	return event_times[index]
 
 # The number of events
