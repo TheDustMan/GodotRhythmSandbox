@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://blcarwvyj0xly"]
+
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/hit_handler.gd" id="1_agfb8"]
+
+[node name="HitHandler" type="Node"]
+script = ExtResource("1_agfb8")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bfvr3gip13q74"]
 
 [ext_resource type="Texture2D" uid="uid://cm3wej1vuu5g" path="res://assets/sprites/Sword_attack_full.png" id="1_h1xox"]
-[ext_resource type="Script" path="res://scenes/rhythm/sprite_beat_animation.gd" id="2_es3yn"]
+[ext_resource type="Script" path="res://scenes/rhythm/coordination/sprite_beat_animation.gd" id="2_es3yn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pke63"]
 atlas = ExtResource("1_h1xox")

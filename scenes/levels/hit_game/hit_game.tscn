@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkpck5cq0sctq"]
+[gd_scene load_steps=18 format=3 uid="uid://dkpck5cq0sctq"]
 
 [ext_resource type="Script" path="res://scenes/levels/hit_game/hit_game.gd" id="1_nff7c"]
 [ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://scenes/audio/synchronizer.tscn" id="2_bc67f"]
+[ext_resource type="Script" path="res://scenes/levels/hit_game/signal_hub.gd" id="2_jibxk"]
 [ext_resource type="PackedScene" uid="uid://rp0kgsxo4241" path="res://scenes/rhythm/coordination/rhythm_pattern.tscn" id="3_e4l6n"]
 [ext_resource type="PackedScene" uid="uid://dkkvaaq55kwc0" path="res://scenes/rhythm/coordination/animation_pattern.tscn" id="4_i1fvc"]
 [ext_resource type="PackedScene" uid="uid://gj1f8glo3brn" path="res://scenes/rhythm/coordination/rhythm_pattern_player.tscn" id="5_h6h1e"]
@@ -9,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dofe5dxhdq6yr" path="res://scenes/characters/sword_character_animated_sprite.tscn" id="7_2hl13"]
 [ext_resource type="PackedScene" uid="uid://c321tbwne4g83" path="res://scenes/rhythm/coordination/rhythm_animated_sprite.tscn" id="8_fox5n"]
 [ext_resource type="Script" path="res://scripts/rhythm_animation_data.gd" id="9_84e5o"]
+[ext_resource type="PackedScene" uid="uid://b5ndltb3687rs" path="res://scenes/input/input_handler.tscn" id="10_v65qk"]
+[ext_resource type="PackedScene" uid="uid://blcarwvyj0xly" path="res://scenes/rhythm/coordination/hit_handler.tscn" id="11_7fqh3"]
+[ext_resource type="PackedScene" uid="uid://cacwbmbtft7mj" path="res://scenes/rhythm/coordination/hit_detector.tscn" id="11_edt1h"]
 
 [sub_resource type="Resource" id="Resource_n530c"]
 script = ExtResource("9_84e5o")
@@ -45,6 +49,14 @@ beat_frame_only = true
 [node name="HitGame" type="Node2D"]
 script = ExtResource("1_nff7c")
 
+[node name="SignalHub" type="Node" parent="." node_paths=PackedStringArray("synchronizer", "print_hit_handler", "hit_detector", "rhythm_pattern_player", "rhythm_animation_coordinator")]
+script = ExtResource("2_jibxk")
+synchronizer = NodePath("../Synchronizer")
+print_hit_handler = NodePath("../PrintHitHandler")
+hit_detector = NodePath("../HitDetector")
+rhythm_pattern_player = NodePath("../RhythmPatternPlayer")
+rhythm_animation_coordinator = NodePath("../RhythmAnimationCoordinator")
+
 [node name="Synchronizer" parent="." instance=ExtResource("2_bc67f")]
 
 [node name="Patterns" type="Node" parent="."]
@@ -52,8 +64,7 @@ script = ExtResource("1_nff7c")
 [node name="Rhythm" type="Node" parent="Patterns"]
 
 [node name="TestRhythmPattern" parent="Patterns/Rhythm" instance=ExtResource("3_e4l6n")]
-pattern_name = "test"
-leading_beats = 1.0
+pattern_name = "4onbeat"
 event_times = Array[float]([1.0, 1.0, 1.0, 1.0])
 
 [node name="FastRhythmPattern" parent="Patterns/Rhythm" instance=ExtResource("3_e4l6n")]
@@ -85,5 +96,20 @@ scale = Vector2(5.56816, 5.56816)
 animated_sprite = NodePath("../SwordCharacterAnimatedSprite")
 rhythm_animation_data = Array[ExtResource("9_84e5o")]([SubResource("Resource_n530c"), SubResource("Resource_5wgyg"), SubResource("Resource_yxsw1"), SubResource("Resource_5hreo")])
 
-[connection signal="start_pressed" from="." to="." method="_on_start_pressed"]
-[connection signal="next_rhythm_event" from="RhythmPatternPlayer" to="RhythmAnimationCoordinator" method="_on_rhythm_pattern_player_next_rhythm_event"]
+[node name="InputHandler" parent="." instance=ExtResource("10_v65qk")]
+
+[node name="PrintHitHandler" parent="." instance=ExtResource("11_7fqh3")]
+
+[node name="HitDetector" parent="." instance=ExtResource("11_edt1h")]
+perfect_time_threshold_s = 0.2
+early_time_threshold_s = 0.1
+late_time_threshold_s = 0.1
+
+[connection signal="next_rhythm_event" from="RhythmPatternPlayer" to="SignalHub" method="_on_rhythm_pattern_player_next_rhythm_event"]
+[connection signal="primary_action" from="InputHandler" to="SignalHub" method="_on_input_handler_primary_action"]
+[connection signal="quit_pressed" from="InputHandler" to="SignalHub" method="_on_input_handler_quit_pressed"]
+[connection signal="start_pressed" from="InputHandler" to="SignalHub" method="_on_input_handler_start_pressed"]
+[connection signal="early_hit" from="HitDetector" to="SignalHub" method="_on_hit_detector_early_hit"]
+[connection signal="late_hit" from="HitDetector" to="SignalHub" method="_on_hit_detector_late_hit"]
+[connection signal="miss_hit" from="HitDetector" to="SignalHub" method="_on_hit_detector_miss_hit"]
+[connection signal="perfect_hit" from="HitDetector" to="SignalHub" method="_on_hit_detector_perfect_hit"]
