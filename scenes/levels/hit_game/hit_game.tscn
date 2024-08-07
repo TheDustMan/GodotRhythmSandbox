@@ -58,7 +58,11 @@ event_times = Array[float]([1.0, 1.0, 1.0, 1.0])
 
 [node name="FastRhythmPattern" parent="Patterns/Rhythm" instance=ExtResource("3_e4l6n")]
 pattern_name = "fast"
-event_times = Array[float]([0.25])
+event_times = Array[float]([0.5])
+
+[node name="4Slow8Fast" parent="Patterns/Rhythm" instance=ExtResource("3_e4l6n")]
+pattern_name = "4slow8fast"
+event_times = Array[float]([0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25])
 
 [node name="Animation" type="Node" parent="Patterns"]
 
@@ -67,7 +71,7 @@ pattern_name = "test"
 animations = Array[String](["up_attack", "left_attack", "down_attack", "right_attack"])
 
 [node name="RhythmPatternPlayer" parent="." node_paths=PackedStringArray("patterns") instance=ExtResource("5_h6h1e")]
-patterns = [NodePath("../Patterns/Rhythm/TestRhythmPattern"), NodePath("../Patterns/Rhythm/FastRhythmPattern")]
+patterns = [NodePath("../Patterns/Rhythm/TestRhythmPattern"), NodePath("../Patterns/Rhythm/FastRhythmPattern"), NodePath("../Patterns/Rhythm/4Slow8Fast")]
 
 [node name="RhythmAnimationCoordinator" parent="." node_paths=PackedStringArray("rhythm_animated_sprite", "animation_pattern") instance=ExtResource("6_2xkpj")]
 rhythm_animated_sprite = NodePath("../RhythmAnimatedSprite")

@@ -199,8 +199,8 @@ func _prepare_next_event() -> void:
 
 	next_rhythm_event.emit(RhythmEvent.new(_pattern_name, _pattern_index, time_until_event))
 
-func _on_beat_started(msg: Dictionary) -> void:
-	_time_between_beats = (1.0 / (msg.bpm / 60.0))
+func _on_beat_started(track_data: AudioTrackData) -> void:
+	_time_between_beats = (1.0 / (track_data.bpm / 60.0))
 
 func _on_beat(msg: Dictionary) -> void:
 	if _new_upcoming_pattern:

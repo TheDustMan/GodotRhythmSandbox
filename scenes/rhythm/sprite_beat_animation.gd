@@ -44,8 +44,8 @@ func _process(delta: float) -> void:
 	if _post_beat_time > _post_beat_animation_time:
 		_post_beat_enabled = false
 
-func _on_beat_started(msg: Dictionary) -> void:
-	_time_between_beats = 1.0 / (msg.bpm / 60.0)
+func _on_beat_started(track_data: AudioTrackData) -> void:
+	_time_between_beats = 1.0 / (track_data.bpm / 60.0)
 	_time_to_next_beat = _time_between_beats
 	_post_beat_time = 0.0
 	_post_beat_enabled = true

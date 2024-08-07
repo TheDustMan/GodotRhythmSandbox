@@ -1,8 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxda7vg43ivh6"]
+[gd_scene load_steps=6 format=3 uid="uid://cxda7vg43ivh6"]
 
 [ext_resource type="Script" path="res://scenes/audio/synchronizer.gd" id="1_abegw"]
+[ext_resource type="Script" path="res://scripts/audio_track.gd" id="2_xktcq"]
+
+[sub_resource type="Resource" id="Resource_ujdh2"]
+script = ExtResource("2_xktcq")
+track_name = "beat"
+path = "res://assets/sounds/beat_long.mp3"
+bpm = 120
+
+[sub_resource type="Resource" id="Resource_cker5"]
+script = ExtResource("2_xktcq")
+track_name = "the_comeback"
+path = "res://assets/sounds/the_comeback2.ogg"
+bpm = 116
+
+[sub_resource type="Resource" id="Resource_yxwni"]
+script = ExtResource("2_xktcq")
+track_name = "beat_faster"
+path = "res://assets/sounds/beat_faster.mp3"
+bpm = 120
 
 [node name="Synchronizer" type="Node"]
 script = ExtResource("1_abegw")
+tracks = Array[ExtResource("2_xktcq")]([SubResource("Resource_ujdh2"), SubResource("Resource_cker5"), SubResource("Resource_yxwni")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

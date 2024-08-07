@@ -58,8 +58,8 @@ func _on_rhythm_pattern_player_next_rhythm_event(event: RhythmEvent) ->void:
 	_animation_index += 1
 
 
-func _on_beat_started(msg: Dictionary) -> void:
-	_time_between_beats = 1.0 / (msg.bpm / 60.0)
+func _on_beat_started(track_data: AudioTrackData) -> void:
+	_time_between_beats = 1.0 / (track_data.bpm / 60.0)
 
 
 func reset() -> void:

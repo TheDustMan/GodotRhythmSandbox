@@ -1,4 +1,7 @@
 extends Node
+class_name Synchronizer
+
+@export var tracks: Array[AudioTrack]
 
 enum SyncSource {
 	SYSTEM_CLOCK,
@@ -21,41 +24,46 @@ var time_delay: float
 var last_beat: int = 0
 var last_beat_time: float = 0
 
-@onready var _stream := $AudioStreamPlayer
+var _track_lookup: Dictionary
 
-func start() -> void:
+@onready var _player := $AudioStreamPlayer
+
+func start(track_name: String) -> void:
+	if track_name not in _track_lookup:
+		print("[Synchronizer] No track named ", track_name, " found")
+		return
+
 	_reset()
-	var msg := {
-		"stream" : "res://assets/sounds/the_comeback2.ogg",
-		"bpm" : 116
-	}
-	_load_track(msg)
-	Events.emit_signal("beat_started", msg)
+	var track_data := AudioTrackData.new(track_name, _track_lookup[track_name].bpm)
+	_load_track(track_name)
+	Events.emit_signal("beat_started", track_data)
 
 func stop() -> void:
 	_reset()
 	playing = false
-	_stream.stop()
+	_player.stop()
 	Events.emit_signal("beat_stopped", {})
 
 func _ready() -> void:
 	#Events.connect("track_selected", self, "_load_track")
-	pass
+	for track in tracks:
+		print("[Synchronizer] Detected track ", track.track_name)
+		_track_lookup[track.track_name] = track
 
 
 func play_audio() -> void:
 	var time_delay := AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency()
 	await get_tree().create_timer(time_delay)
 	playing = true
-	_stream.play()
+	_player.play()
 
 
 func _process(_delta: float) -> void:
-	if not playing or not _stream.playing:
+	if not playing or not _player.playing:
 		return
 
 	var time := 0.0
-	time = _stream.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
+	time = _player.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() + (1 / COMPENSATE_HZ) * COMPENSATE_FRAMES
 
 	var beat := int(time * bpm / 60.0)
 	if beat != last_beat:
@@ -63,9 +71,9 @@ func _process(_delta: float) -> void:
 		last_beat = beat
 		last_beat_time = Time.get_unix_time_from_system()
 
-func _load_track(msg: Dictionary) -> void:
-	_stream.stream = load(msg.stream)
-	bpm = msg.bpm
+func _load_track(track_name: String) -> void:
+	_player.stream = load(_track_lookup[track_name].path)
+	bpm = _track_lookup[track_name].bpm
 	play_audio()
 
 func _reset() -> void:

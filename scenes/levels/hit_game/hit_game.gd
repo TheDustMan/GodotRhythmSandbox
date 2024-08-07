@@ -22,7 +22,7 @@ func _process(delta) -> void:
 
 func _on_start_pressed() -> void:
 	$Synchronizer.stop()
-	$Synchronizer.start()
+	$Synchronizer.start("beat")
 	# TODO Pattern-player must be started after synchronizer to receive
 	# initialization data. Try to make this not required.
 	$RhythmPatternPlayer.play("fast", -1)

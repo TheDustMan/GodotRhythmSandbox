@@ -26,8 +26,8 @@ func _ready() -> void:
 func _process(delta) -> void:
 	pass
 
-func _on_beat_started(msg: Dictionary):
-	_time_between_beats = 1.0 / (msg.bpm / 60.0);
+func _on_beat_started(track_data: AudioTrackData):
+	_time_between_beats = 1.0 / (track_data.bpm / 60.0);
 	_perfect_offset = _time_between_beats * _perfect_offset_ratio
 	print("time between beats: ", _time_between_beats)
 
