@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d04foj1g87uka"]
+
+[ext_resource type="PackedScene" uid="uid://bw3stunux11o7" path="res://scenes/rhythm/widgets/beat_hit_timing_visualizer.tscn" id="1_j1ob6"]
+[ext_resource type="Script" path="res://scripts/hit_timings.gd" id="2_4ymma"]
+
+[sub_resource type="Resource" id="Resource_ujqb7"]
+script = ExtResource("2_4ymma")
+perfect_radius_s = 0.2
+late_threshold_s = 0.1
+early_threshold_s = 0.1
+
+[node name="TestBeatTimingVisualizer" type="Node2D"]
+
+[node name="BeatHitTimingVisualizer" parent="." instance=ExtResource("1_j1ob6")]
+position = Vector2(575, 321)
+hit_timings = SubResource("Resource_ujqb7")
+pixels_per_second = 300.0

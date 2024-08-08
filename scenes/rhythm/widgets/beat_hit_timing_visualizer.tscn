@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw3stunux11o7"]
+
+[ext_resource type="Script" path="res://scenes/rhythm/widgets/beat_hit_timing_visualizer.gd" id="1_jpvql"]
+
+[node name="BeatHitTimingVisualizer" type="Node2D"]
+script = ExtResource("1_jpvql")
+
+[node name="Perfect" type="Polygon2D" parent="."]
+scale = Vector2(20, 1)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+polygon = PackedVector2Array(-4, 4, 4, 4, 4, -4, -4, -4)
+
+[node name="Early" type="Polygon2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(20, 1)
+color = Color(1, 1, 0, 1)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+polygon = PackedVector2Array(-4, 4, 4, 4, 4, -4, -4, -4)
+
+[node name="Late" type="Polygon2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(20, 1)
+color = Color(1, 0, 0, 1)
+offset = Vector2(5.96046e-08, -1.09673e-05)
+polygon = PackedVector2Array(-4, 4, 4, 4, 4, -4, -4, -4)
+
+[node name="CenterMarker" type="Marker2D" parent="."]

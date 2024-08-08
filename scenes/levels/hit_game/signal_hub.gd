@@ -5,6 +5,7 @@ extends Node
 @export var hit_detector: HitDetector
 @export var rhythm_pattern_player: RhythmPatternPlayer
 @export var rhythm_animation_coordinator: RhythmAnimationCoordinator
+@export var beat_hit_timing_visualizer: BeatHitTimingVisualizer
 
 # Hit Detection
 
@@ -28,6 +29,7 @@ func _on_hit_detector_perfect_hit() -> void:
 
 func _on_input_handler_primary_action() -> void:
 	hit_detector.on_player_action()
+	beat_hit_timing_visualizer.on_hit()
 
 
 func _on_input_handler_start_pressed() -> void:
@@ -47,3 +49,4 @@ func _on_input_handler_quit_pressed() -> void:
 func _on_rhythm_pattern_player_next_rhythm_event(event: RhythmEvent) -> void:
 	rhythm_animation_coordinator.on_next_rhythm_event(event)
 	hit_detector.on_next_rhythm_event(event)
+	beat_hit_timing_visualizer.on_next_event(event)

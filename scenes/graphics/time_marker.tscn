@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bekjfviq7x8le"]
+
+[ext_resource type="Script" path="res://scenes/graphics/time_marker.gd" id="1_7vpd1"]
+
+[node name="TimeMarker" type="Polygon2D"]
+position = Vector2(0, -5.04871e-29)
+scale = Vector2(3.92, 0.5)
+offset = Vector2(-0.510204, 2.08165e-12)
+polygon = PackedVector2Array(-7, -6, 8, -6, 8, 6, -7, 6)
+script = ExtResource("1_7vpd1")

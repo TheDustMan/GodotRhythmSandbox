@@ -10,41 +10,7 @@ signal miss_hit
 
 # Exports
 
-# The amount of time around an event that we consider a “perfect” hit. Essentially, a hit
-# can be up to (threshold/2) amount of time early, or up to (threshold/2) amount of time
-# late. This value can be viewed as a sort of time radius around events.
-@export var perfect_time_threshold_s: float
-
- #The amount of time before the perfect_threshold time begins that hits will be
- #considered “early”.
-@export var  early_time_threshold_s: float
-
- # The amount of time after the perfect_threshold time ends that hits will be
- # considered “late”.
-@export var  late_time_threshold_s: float
-
-# The threshold layers can be visualized as follows:
-#
-#  |  Miss
-#  |
-# --- Early Start Time
-#  |
-#  |
-#  |
-# --- Early End / Perfect Start
-#  |
-#  |
-# ------ <-- Event time
-#  |
-#  |
-# --- Perfect End / Late Start
-#  |
-#  |
-#  |
-# --- Late End
-#  |
-#  |  Miss
-
+@export var hit_timings: HitTimings
 
 # Private
 
@@ -61,7 +27,7 @@ func _process(delta: float) -> void:
 	var remove_events: Array[int] = []
 	for i in range(_upcoming_events.size()):
 		var event_time := _upcoming_events[i]
-		if current_time > event_time + (perfect_time_threshold_s / 2.0) + late_time_threshold_s:
+		if current_time > event_time + (hit_timings.perfect_radius_s / 2.0) + hit_timings.late_threshold_s:
 			emit_signal("miss_hit")
 			remove_events.push_back(i)
 	for idx in remove_events:
@@ -92,21 +58,21 @@ func on_player_action() -> void:
 	for i in range(1):#range(_upcoming_events.size()):
 		var remove: bool = true
 		var event_time := _upcoming_events[i]
-		var perfect_threshold_s = perfect_time_threshold_s / 2.0
-		var early_threshold_s = event_time - perfect_threshold_s - early_time_threshold_s
-		var late_threshold_s = event_time + perfect_threshold_s + late_time_threshold_s
+		var perfect_threshold_s = hit_timings.perfect_radius_s / 2.0
+		var early_threshold_s = event_time - hit_timings.perfect_radius_s - hit_timings.early_threshold_s
+		var late_threshold_s = event_time + hit_timings.perfect_radius_s + hit_timings.late_threshold_s
 		var distance := current_time - event_time;
 		if absf(distance) <= perfect_threshold_s:
 			emit_signal("perfect_hit")
 		elif current_time > event_time + perfect_threshold_s and \
-			 current_time <= event_time + perfect_threshold_s + late_time_threshold_s:
+			 current_time <= event_time + hit_timings.perfect_radius_s + hit_timings.late_threshold_s:
 			emit_signal("late_hit")
-		elif current_time > event_time + perfect_threshold_s + late_time_threshold_s:
+		elif current_time > event_time + hit_timings.perfect_radius_s + hit_timings.late_threshold_s:
 			emit_signal("miss_hit")
 		elif current_time < event_time - perfect_threshold_s and \
-			 current_time >= event_time - perfect_threshold_s - early_time_threshold_s:
+			 current_time >= event_time - hit_timings.perfect_radius_s - hit_timings.early_threshold_s:
 			emit_signal("early_hit")
-		elif current_time < event_time - perfect_threshold_s - early_time_threshold_s:
+		elif current_time < event_time - hit_timings.perfect_radius_s - hit_timings.early_threshold_s:
 			emit_signal("miss_hit")
 		else:
 			remove = false

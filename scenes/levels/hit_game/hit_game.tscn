@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkpck5cq0sctq"]
+[gd_scene load_steps=21 format=3 uid="uid://dkpck5cq0sctq"]
 
 [ext_resource type="Script" path="res://scenes/levels/hit_game/hit_game.gd" id="1_nff7c"]
 [ext_resource type="PackedScene" uid="uid://cxda7vg43ivh6" path="res://scenes/audio/synchronizer.tscn" id="2_bc67f"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://b5ndltb3687rs" path="res://scenes/input/input_handler.tscn" id="10_v65qk"]
 [ext_resource type="PackedScene" uid="uid://blcarwvyj0xly" path="res://scenes/rhythm/coordination/hit_handler.tscn" id="11_7fqh3"]
 [ext_resource type="PackedScene" uid="uid://cacwbmbtft7mj" path="res://scenes/rhythm/coordination/hit_detector.tscn" id="11_edt1h"]
+[ext_resource type="Resource" uid="uid://b83qxrxpobyf4" path="res://resources/levels/hit_game/hit_timings.tres" id="14_8q8it"]
+[ext_resource type="PackedScene" uid="uid://bw3stunux11o7" path="res://scenes/rhythm/widgets/beat_hit_timing_visualizer.tscn" id="15_3ppr3"]
+[ext_resource type="PackedScene" uid="uid://bekjfviq7x8le" path="res://scenes/graphics/time_marker.tscn" id="16_vw23h"]
 
 [sub_resource type="Resource" id="Resource_n530c"]
 script = ExtResource("9_84e5o")
@@ -49,13 +52,14 @@ beat_frame_only = true
 [node name="HitGame" type="Node2D"]
 script = ExtResource("1_nff7c")
 
-[node name="SignalHub" type="Node" parent="." node_paths=PackedStringArray("synchronizer", "print_hit_handler", "hit_detector", "rhythm_pattern_player", "rhythm_animation_coordinator")]
+[node name="SignalHub" type="Node" parent="." node_paths=PackedStringArray("synchronizer", "print_hit_handler", "hit_detector", "rhythm_pattern_player", "rhythm_animation_coordinator", "beat_hit_timing_visualizer")]
 script = ExtResource("2_jibxk")
 synchronizer = NodePath("../Synchronizer")
 print_hit_handler = NodePath("../PrintHitHandler")
 hit_detector = NodePath("../HitDetector")
 rhythm_pattern_player = NodePath("../RhythmPatternPlayer")
 rhythm_animation_coordinator = NodePath("../RhythmAnimationCoordinator")
+beat_hit_timing_visualizer = NodePath("../BeatHitTimingVisualizer")
 
 [node name="Synchronizer" parent="." instance=ExtResource("2_bc67f")]
 
@@ -101,9 +105,13 @@ rhythm_animation_data = Array[ExtResource("9_84e5o")]([SubResource("Resource_n53
 [node name="PrintHitHandler" parent="." instance=ExtResource("11_7fqh3")]
 
 [node name="HitDetector" parent="." instance=ExtResource("11_edt1h")]
-perfect_time_threshold_s = 0.2
-early_time_threshold_s = 0.1
-late_time_threshold_s = 0.1
+hit_timings = ExtResource("14_8q8it")
+
+[node name="BeatHitTimingVisualizer" parent="." instance=ExtResource("15_3ppr3")]
+position = Vector2(144, 293)
+hit_timings = ExtResource("14_8q8it")
+pixels_per_second = 500.0
+time_marker_scene = ExtResource("16_vw23h")
 
 [connection signal="next_rhythm_event" from="RhythmPatternPlayer" to="SignalHub" method="_on_rhythm_pattern_player_next_rhythm_event"]
 [connection signal="primary_action" from="InputHandler" to="SignalHub" method="_on_input_handler_primary_action"]
